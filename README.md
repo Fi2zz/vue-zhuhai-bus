@@ -16,3 +16,12 @@ vue版本
 
 	Express Vue Vue-router
 
+### 使用
+	git clone
+
+	npm install
+
+	npm run start
+
+	npm run dev
+
