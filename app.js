@@ -9,13 +9,12 @@ const headers = {
 
 const HOST = 'www.zhbuswx.com';
 const api = `/Handlers/BusQuery.ashx?handlerName=`;
-//http请求客户端
-module.exports = function client(opts) {
-  let data = opts.data ? querystring.stringify(opts.data) : ''
+//http gett请求客户端
+module.exports = function (opts) {
   let options = {
     port: 80,
     host: opts.host || HOST,
-    path: `${api}${opts.path}${data}`,
+    path: `${api}${opts.path}`,
     method: "GET",
     headers: headers,
     encoding: null
@@ -31,9 +30,6 @@ module.exports = function client(opts) {
       });
       res.on('error', err => reject(err));
     });
-    if (method === 'post') {
-      req.write(data);
-    }
     req.end();
   })
 }

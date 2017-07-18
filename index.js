@@ -1,21 +1,21 @@
-const get = require('./app');
-const ip = require('./getIp');
-
 const express = require('express');
 const app = express();
+
+const querystring = require("querystring");
+
+const cors = require('cors');
+const get = require('./app');
+const ip = require('./getIp');
+//api handlers
 const HANDLER_GET_STATION_LIST = 'GetStationList';
 const HANDLER_GET_LINELIST_BY_LINENAME = "GetLineListByLineName";
 const HANDLER_GET_BUSLIST_ONROAD = "GetBusListOnRoad";
 
-const cors = require('cors');
-const querystring = require("querystring");
-
-
+//跨域解决方案
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST']
 }));
-
 app.get('*', (req, res) => {
   let params = req.params;
   let query = req.query;
@@ -24,7 +24,6 @@ app.get('*', (req, res) => {
   if (param === 'getLine') {
     get({
       path: `${HANDLER_GET_LINELIST_BY_LINENAME}&key=${query.lineId}`,
-      data: ``
     }).then(resp => {
       res.send(resp)
     })
@@ -33,7 +32,6 @@ app.get('*', (req, res) => {
   if (param === 'getStopList') {
     get({
       path: `${HANDLER_GET_STATION_LIST}&lineId=${query.lineId}`,
-      data: ``
     }).then(resp => {
       res.send(resp)
     })
@@ -42,7 +40,7 @@ app.get('*', (req, res) => {
   //获取车辆实时列表，如3路车 车牌号 粤C18272  当前位置：叠石
   if (param === 'getOnRoad') {
     get({
-      path: HANDLER_GET_BUSLIST_ONROAD + `&lineName=${encodeURI(query.lineName)}&fromStation=${encodeURI(query.fromStation)}`,
+      path: `${HANDLER_GET_BUSLIST_ONROAD}&lineName=${encodeURI(query.lineName)}&fromStation=${encodeURI(query.fromStation)}`,
     }).then(body => {
       res.send(body)
     })
