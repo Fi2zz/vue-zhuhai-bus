@@ -1,32 +1,24 @@
 <template>
 
-  <div class="view" :class="viewName">
+  <div class="view" :class="viewName" >
 
     <div class="view-header">
-
-
       <div class="view-header-wrap">
-
-        <div class="view-header-button"
-
-             @click="$router.push('/')"
-             style="position: absolute;top: 0;bottom: 0;left: 0;font-size: 14px;
-        padding-left: 16px;
-">返回
+        <div class="view-header-button" @click="$router.push('/')">返回</div>
+        <div class="view-title" style="">
+            {{lineName}} / {{currentBuses.length}} 
         </div>
-        <div @click="switchDir " class="view-title" style="font-size: 16px; text-align: center;">{{from}}
-          <icon
-            width="16"
-            height="16"
-          ></icon>
-          {{to}}
-        </div>
-
-
       </div>
-
     </div>
-    <div>
+    <div class="view-body" >
+
+      <div class="view-current-stations" v-show="list &&list.length>0">
+        <div class="cell-wrap" @click="list.reverse()">
+          <div class="cell">{{from}}</div>
+          <div class="cell"><icon width="16" height="16"/></div> 
+          <div class="cell">{{to}}</div> 
+          </div>    
+      </div> 
       <ol class="view-list">
         <li v-for="(item,index) in list"><span>{{index > 9 ? index + 1 : `0${index + 1}`}}</span>{{item.Name}}
 
@@ -45,6 +37,20 @@
 </template>
 <style scoped lang="stylus">
   .view-header
+    .view-title
+      font-size 16px
+      text-align center
+  .view-header-button 
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    font-size: 14px;
+    padding-left: 16px;
+
+  .view-current-line
+    padding-top 88px
+  .view-header
     z-index: 9
 
   .view-title
@@ -57,6 +63,36 @@
     font-size: 16px
     svg
       font-size: 12px
+
+  .view-current-stations
+    position fixed
+    top 44px
+    left 0
+    right 0
+    z-index 9
+    .cell-wrap
+      display flex    
+      align-items center
+      background #fff
+      max-width 480px 
+      margin auto
+      width 100%
+      border-bottom 1px #ddd solid
+      .cell
+        display flex
+        height 44px
+        line-height 44px
+        
+        font-size 14px
+        align-items center
+        justify-content center
+        &:nth-of-type(1)
+          flex .4
+        &:nth-of-type(2)
+          flex .2  
+        &:nth-last-of-type(1)
+          flex .4  
+
 
   .view-list
     margin: 0
@@ -83,7 +119,7 @@
         border-radius 50%
         color #fff
 
-      &:after
+      &:not(:nth-last-of-type(1)):after
         display: block
         height: 1px
         background #ddd
@@ -111,7 +147,7 @@
     components: {icon},
     data(){
       return {
-        viewName: 'view-line',
+        viewName: 'view-current-line',
         from: '',
         to: '',
         list: [],
@@ -141,25 +177,12 @@
       from(from){
         console.log(from, this.lineName)
         if (from) {
-
-//          setTimeout(() => {
           api.getLineRunning(this.lineName, from)
             .then(res => {
               console.log(res);
               this.currentBuses = res.data;
             })
-//          }, 300)
-
         }
-
-
-      }
-    },
-    methods: {
-      switchDir(dir){
-
-        this.list.reverse()
-
       }
     }
   }

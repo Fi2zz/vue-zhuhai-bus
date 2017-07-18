@@ -14,7 +14,7 @@
         <input class="form-control" type="text" v-model="lineId"
                placeholder="请输入路线号，如：8"
         >
-        <!--<span class="input-group-addon">搜索</span>-->
+
       </div>
       <div>
         <div v-for="item in data"
@@ -39,7 +39,8 @@
 
 </template>
 <style lang="stylus">
-
+  .view-default
+    padding-top 52px
 
   .bus-line
     border-bottom: 1px #ddd solid
@@ -69,7 +70,12 @@
       flex .9
       &:nth-of-type(1)
         flex .1
-
+  .form-control
+    padding-left 16px
+    line-height 1
+    &:focus,
+    &:active
+      outline none     
 
 </style>
 <script>
@@ -78,7 +84,7 @@
   export default{
     data(){
       return {
-        viewName: 'view-realtime',
+        viewName: 'view-default',
         lineId: '',
         data: []
       }

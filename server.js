@@ -4,8 +4,8 @@ const app = express();
 const querystring = require("querystring");
 
 const cors = require('cors');
-const get = require('./app');
-const ip = require('./getIp');
+const get = require('./server/http.get.js');
+const ip = require('./server/getIp');
 //api handlers
 const HANDLER_GET_STATION_LIST = 'GetStationList';
 const HANDLER_GET_LINELIST_BY_LINENAME = "GetLineListByLineName";

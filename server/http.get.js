@@ -20,7 +20,6 @@ module.exports = function (opts) {
     encoding: null
   };
 
-
   return new Promise((resolve, reject) => {
     let body = '';
     let req = http.request(options, (res) => {

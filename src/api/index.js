@@ -5,9 +5,10 @@ Vue.use(VueResource);
 let locations = window.location,
   port = 3000;
 const uri = `${locations.protocol}//${locations.hostname}:${port}`
+
 const timestamp = (new Date()).getTime()
 function search(line) {
-  let url = `${uri}/getLine/?lineId=${line}`;
+  let url = `${uri}/getLine/?lineId=${line}&_=${timestamp}`;
   return Vue.http.get(url).then(function (response) {
     return response.data;
   }, function (response) {
@@ -17,7 +18,7 @@ function search(line) {
 
 
 function getLineRunning(name, from) {
-  let url = `${uri}/getOnRoad/?lineName=${name}&fromStation=${from}`;
+  let url = `${uri}/getOnRoad/?lineName=${name}&fromStation=${from}&_=${timestamp}`;
   return Vue.http.get(url).then(res => {
     return res.data
   }, res => {
