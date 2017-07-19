@@ -6,9 +6,9 @@ let locations = window.location,
   port = 3000;
 const uri = `${locations.protocol}//${locations.hostname}:${port}`
 
-const timestamp = (new Date()).getTime()
+const timestamp = (new Date()).getTime();
 function search(line) {
-  let url = `${uri}/getLine/?lineId=${line}&_=${timestamp}`;
+  let url = `${uri}/search/?line=${line}&_=${timestamp}`;
   return Vue.http.get(url).then(function (response) {
     return response.data;
   }, function (response) {
@@ -17,8 +17,8 @@ function search(line) {
 }
 
 
-function getLineRunning(name, from) {
-  let url = `${uri}/getOnRoad/?lineName=${name}&fromStation=${from}&_=${timestamp}`;
+function getRunning(name, from) {
+  let url = `${uri}/current/?name=${name}&from=${from}&_=${timestamp}`;
   return Vue.http.get(url).then(res => {
     return res.data
   }, res => {
@@ -26,8 +26,8 @@ function getLineRunning(name, from) {
   })
 
 }
-function getLineById(id) {
-  let url = `${uri}/getStopList/?lineId=${id}&_=${timestamp}`
+function getLine(id) {
+  let url = `${uri}/line/?id=${id}&_=${timestamp}`
   return Vue.http.get(url).then(res => {
     return res.data
   }, res => {
@@ -37,6 +37,6 @@ function getLineById(id) {
 }
 export  {
   search,
-  getLineById,
-  getLineRunning
+  getLine,
+  getRunning
 }

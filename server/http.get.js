@@ -19,7 +19,6 @@ module.exports = function (opts) {
     headers: headers,
     encoding: null
   };
-
   return new Promise((resolve, reject) => {
     let body = '';
     let req = http.request(options, (res) => {

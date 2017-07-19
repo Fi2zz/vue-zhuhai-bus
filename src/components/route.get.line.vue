@@ -1,48 +1,29 @@
 <template>
-
   <div class="view" :class="viewName">
     <div class="view-header">
-      <div class="view-header-wrap" style="text-align: center;font-size: 16px;">
-
-        珠海公交巴士查询
-
+      <div class="view-header-wrap">
+        <div class="view-header-title">珠海公交巴士查询</div>
       </div>
     </div>
     <div class="view-body">
-
-      <div class="view-form-control input-group">
-        <input class="form-control" type="text" v-model="lineId"
-               placeholder="请输入路线号，如：8"
-        >
-
+      <div class="text-input">
+        <input class="form-control" type="search" placeholder="请输入路线号，如：8" v-model="lineId"/>
       </div>
-      <div>
-        <div v-for="item in data"
-             @click="getId(item)"
-             class="bus-line"
-        >
-
-          <div class="cell">
-            {{item.LineNumber}}
-
-          </div>
-          <div class="cell">
-            {{item.FromStation}}  -
-            {{item.ToStation}}
-          </div>
-
-        </div>
-
-      </div>
+      <ol class="view-list">
+        <li v-for="item in data" @click="getId(item)" class="view-list-item">
+          <div class="cell">{{item.LineNumber}}</div>
+          <div class="cell">{{item.FromStation}}  - {{item.ToStation}}</div>
+        </li>
+      </ol>
     </div>
   </div>
-
 </template>
 <style lang="stylus">
-  .view-default
-    padding-top 52px
 
-  .bus-line
+  .view-list
+    padding 0 8px
+
+  .view-list-item
     border-bottom: 1px #ddd solid
     font-size: 14px
     height: 44px
@@ -52,34 +33,16 @@
     justify-content flex-start
     align-items center
     position: relative
-
-    &:after
-      display: block
-      content ''
-      border 6px #ddd solid
-      width: 44px
-      height: 44px
-      transform rotate(45deg) scale(.3, .3)
-      position: absolute
-      top: -4px
-      right: -16px
-      border-left: none
-      border-bottom: none
+    padding 0 8px
     .cell
       display: flex
       flex .9
       &:nth-of-type(1)
         flex .1
-  .form-control
-    padding-left 16px
-    line-height 1
-    &:focus,
-    &:active
-      outline none     
+
 
 </style>
 <script>
-
   import * as api from '../api';
   export default{
     data(){
@@ -104,12 +67,9 @@
     methods: {
       getId(item){
         let id = item.Id;
-        let dir = item.Direction;
         let name = item.Name;
-        this.$router.push({name: 'view', query: {id, dir, name}})
-
+        this.$router.push({name: 'view', query: {id, name, lineNumber: this.lineId}})
       }
     },
-
   }
 </script>

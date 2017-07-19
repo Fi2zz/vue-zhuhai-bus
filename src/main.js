@@ -46,7 +46,6 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
 import './stylus/style.styl'
 
 new Vue({
@@ -54,4 +53,4 @@ new Vue({
   router,
   template: '<App/>',
   components: {App}
-})
+});
