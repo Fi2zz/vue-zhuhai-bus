@@ -9,11 +9,11 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'get',
+      name: 'search',
       component: getLine
     }, {
-      path: '/line',
-      name: 'view',
+      path: '/line/:id',
+      name: 'line',
       component: showLine
     }
 

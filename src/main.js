@@ -24,7 +24,7 @@
       q = a.devicePixelRatio;
     i = p ? q >= 3 && (!i || i >= 3) ? 3 : q >= 2 && (!i || i >= 2) ? 2 : 1 : 1, j = 1 / i
   }
-  if (f.setAttribute("data-dpr", i), !g)if (g = e.createElement("meta"), g.setAttribute("name", "viewport"), g.setAttribute("content", "initial-scale=" + j + ", maximum-scale=" + j + ", minimum-scale=" + j + ", user-scalable=no"), f.firstElementChild) f.firstElementChild.appendChild(g); else {
+  if (f.setAttribute("data-dpr", i), !g) if (g = e.createElement("meta"), g.setAttribute("name", "viewport"), g.setAttribute("content", "initial-scale=" + j + ", maximum-scale=" + j + ", minimum-scale=" + j + ", user-scalable=no"), f.firstElementChild) f.firstElementChild.appendChild(g); else {
     var r = e.createElement("div");
     r.appendChild(g), e.write(r.innerHTML)
   }
@@ -48,6 +48,12 @@ import App from './App'
 import router from './router'
 import './stylus/style.styl'
 
+import api from './api';
+
+Vue.prototype.$api = api;
+Vue.prototype.$padding = (number) => {
+  return number <= 9 ? `0${number}` : `${number}`
+}
 new Vue({
   el: '#app',
   router,

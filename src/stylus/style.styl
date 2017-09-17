@@ -9,8 +9,6 @@ html, body
   height 100%
   overflow hidden
 
-body
-  background #222
 
 #app
   max-width 480px
@@ -19,12 +17,10 @@ body
   padding 8px 8px
   height 100%
   min-height 100%
-  overflow-y scroll
-  -webkit-overflow-scrolling touch
 
 .view
   padding-top: 44px
-
+  height 100%
 .view-header
 
   position: fixed
@@ -53,10 +49,17 @@ body
   input
     display: block
     width: 100%
+    border none
     -webkit-appearance none
-    border 1px brand-gray solid
     border-radius 4px
     height: 45px
     padding 7px
     line-height 28px
-    resize none
+    font-size 16px
+    background brand-gray
+    border:1px light solid
+    
+    &:focus
+      outline none
+      
+       

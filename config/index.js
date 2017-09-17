@@ -1,11 +1,15 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
 
+const aliyunApp = '../aliyun-app'
+const aliyunPublic =path.resolve(aliyunApp,'public')
+const aliyunView =path.resolve(aliyunApp,'view');
+
 module.exports = {
   build: {
     env: require('./prod.env'),
-    index: path.resolve(__dirname, '../dist/index.html'),
-    assetsRoot: path.resolve(__dirname, '../dist'),
+    index: path.resolve(aliyunView,'index.html'),
+    assetsRoot: aliyunPublic,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     productionSourceMap: true,
