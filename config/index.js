@@ -1,24 +1,24 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
-var path = require('path')
+var path = require("path");
 
-const aliyunApp = '../aliyun-app'
-const aliyunPublic =path.resolve(aliyunApp,'public')
-const aliyunView =path.resolve(aliyunApp,'view');
+const aliyunApp = "../aliyun-app";
+const aliyunPublic = path.resolve(aliyunApp, "public");
+const aliyunView = path.resolve(aliyunApp, "view");
 
 module.exports = {
   build: {
-    env: require('./prod.env'),
-    index: path.resolve(aliyunView,'index.html'),
+    env: require("./prod.env"),
+    index: path.resolve(aliyunView, "index.html"),
     assetsRoot: aliyunPublic,
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsSubDirectory: "static",
+    assetsPublicPath: "/",
     productionSourceMap: true,
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.
     // Before setting to `true`, make sure to:
     // npm install --save-dev compression-webpack-plugin
     productionGzip: false,
-    productionGzipExtensions: ['js', 'css'],
+    productionGzipExtensions: ["js", "css"],
     // Run the build command with an extra argument to
     // View the bundle analyzer report after build finishes:
     // `npm run build --report`
@@ -26,11 +26,11 @@ module.exports = {
     bundleAnalyzerReport: process.env.npm_config_report
   },
   dev: {
-    env: require('./dev.env'),
+    env: require("./dev.env"),
     port: 8080,
     autoOpenBrowser: false,
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsSubDirectory: "static",
+    assetsPublicPath: "/",
     proxyTable: {},
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
@@ -39,4 +39,4 @@ module.exports = {
     // just be aware of this issue when enabling this option.
     cssSourceMap: false
   }
-}
+};
